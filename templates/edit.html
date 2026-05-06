@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Редагування задачі</h1>
+
+<form method="post" action="/edit/{{ task.id }}">
+
+    <input name="title" value="{{ task.title }}" required>
+
+    <div class="dropdown">
+        <div class="dropdown-input" onclick="toggle('statusList')">
+            <span id="statusText">{{ task.status or "Статус" }}</span>
+        </div>
+
+        <div class="dropdown-list" id="statusList">
+            <div onclick="set('status','statusText','Не розпочато')">Не розпочато</div>
+            <div onclick="set('status','statusText','В процесі')">В процесі</div>
+            <div onclick="set('status','statusText','Завершено')">Завершено</div>
+        </div>
+
+        <input type="hidden" name="status" id="status" value="{{ task.status }}">
+    </div>
+
+    <div class="dropdown">
+        <div class="dropdown-input" onclick="toggle('priorityList')">
+            <span id="priorityText">{{ task.priority or "Пріоритет" }}</span>
+        </div>
+
+        <div class="dropdown-list" id="priorityList">
+            <div onclick="set('priority','priorityText','Низький')">Низький</div>
+            <div onclick="set('priority','priorityText','Середній')">Середній</div>
+            <div onclick="set('priority','priorityText','Високий')">Високий</div>
+        </div>
+
+        <input type="hidden" name="priority" id="priority" value="{{ task.priority }}">
+    </div>
+
+    <input type="date" name="deadline" class="date-input" value="{{ task.deadline }}">
+
+    <button type="submit">Зберегти</button>
+
+</form>
+
+</div>
+<script src="/static/js/dropdown.js"></script>
+</body>
+</html>

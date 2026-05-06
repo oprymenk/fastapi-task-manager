@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+    <img src="/static/img/сакура-removebg-preview.png" class="icon">
+    Task Manager
+    <img src="/static/img/сакура-removebg-preview.png" class="icon">
+</h1>
+
+<form action="/add" method="post">
+
+    <input name="title" placeholder="Назва завдання" required>
+
+    <div class="dropdown">
+        <div class="dropdown-input" onclick="toggle('statusList')">
+            <span id="statusText">Статус</span>
+        </div>
+
+        <div class="dropdown-list" id="statusList">
+            <div onclick="set('status','statusText','Не розпочато')">Не розпочато</div>
+            <div onclick="set('status','statusText','В процесі')">В процесі</div>
+            <div onclick="set('status','statusText','Завершено')">Завершено</div>
+        </div>
+
+        <input type="hidden" name="status" id="status">
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-input" onclick="toggle('priorityList')">
+            <span id="priorityText">Пріоритет</span>
+        </div>
+
+        <div class="dropdown-list" id="priorityList">
+            <div onclick="set('priority','priorityText','Низький')">Низький</div>
+            <div onclick="set('priority','priorityText','Середній')">Середній</div>
+            <div onclick="set('priority','priorityText','Високий')">Високий</div>
+        </div>
+
+        <input type="hidden" name="priority" id="priority">
+    </div>
+
+    <input type="date" name="deadline" class="date-input">
+
+    <button>Додати</button>
+</form>
+
+{% for task in tasks %}
+<div class="task">
+
+    <img src="/static/img/папоротник-removebg-preview.png" class="icon-small">
+
+    <div class="title">{{ task.title }}</div>
+
+    <div class="meta">
+        {{ task.status }} · {{ task.priority }} · {{ task.deadline }}
+    </div>
+
+    <div class="actions">
+        <a href="/edit/{{ task.id }}">Редагувати</a>
+        <a href="/delete/{{ task.id }}">Видалити</a>
+    </div>
+
+</div>
+{% endfor %}
+
+</div>
+<script src="/static/js/dropdown.js"></script>
+</body>
+</html>
