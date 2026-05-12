@@ -30,7 +30,7 @@ source venv/bin/activate
 Встановити залежності:
 pip install -r requirements.txt
 
-Запуск
+Запуск:
 uvicorn app.main:app --reload
 
 API буде доступне за адресою:
