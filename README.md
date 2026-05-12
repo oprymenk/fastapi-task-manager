@@ -21,10 +21,10 @@ cd fastapi-task-manager
 Створити та активувати віртуальне середовище:
 python -m venv venv
 
-Windows
+Windows: 
 venv\Scripts\activate
 
-Linux / MacOS
+Linux / MacOS: 
 source venv/bin/activate
 
 Встановити залежності:
